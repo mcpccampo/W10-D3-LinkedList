@@ -67,13 +67,19 @@ class SinglyLinkedList {
         if (this.head === null) {
             return undefined;
         } else {
+            if (this.head.next === null) {
+                let removed = this.head;
+                this.head = null;
+                this.length--;
+                return removed;
+            }
             let current = this.head;
             while (current.next.next) {
                 current = current.next;
             }
             let removed = current.next;
              current.next = null;
-             length--;
+             this.length--;
             return removed;
         }
         
@@ -82,13 +88,22 @@ class SinglyLinkedList {
 
     peekAtHead() {
         // Return value of head node
-
+        if (this.head === null) {
+            return undefined;
+        } else {
+            return this.head.value;
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 
     print() {
         // Print out the linked list
-
+        if (this.head === null) return '';
+        let current = this.head;
+        while (current) {
+            console.log(current.value);
+            current = current.next;
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 }
